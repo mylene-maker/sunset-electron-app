@@ -1,0 +1,9 @@
+<div
+  *ngIf="(user$ | async) as user"
+  class="card mt-3 mx-auto shadow" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.firstname }} {{ user.lastname }}</h5>
+    <p>{{user.country}}</p>
+    <a [routerLink]="['/']" class="btn btn-outline-dark">Revenir sur la liste</a>
+  </div>
+</div>

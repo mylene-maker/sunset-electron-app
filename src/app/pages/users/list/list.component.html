@@ -1,0 +1,144 @@
+<div class="mt-5">
+
+  <div class="d-flex justify-content-between mb-4">
+    <input type="text"
+    placeholder="Filtrer un utilisateur par nom ou prénom"
+    class="input-group-text text-start"
+    size="100"
+    (input)="onInputSearchFilter($event)">
+    <button (click)="onClickAddUser(modalUserForm)" class="btn btn-success">Ajouter un nouvel utilisateur</button>
+  </div>
+
+  <ng-template #modalUserForm let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-title-user-form">{{ selectedUserForEdition ? 'MODIFIER UN UTILISATEUR' : 'AJOUTER UN UTILISATEUR'}}</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-describedby="modal-title-user-form"
+        (click)="modal.dismiss('cross')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form *ngIf="userForm" [formGroup]="userForm">
+
+        <div class="form-floating mt-2">
+          <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" formControlName="email">
+          <label for="floatingEmail">Email address</label>
+          <app-form-errors [group]="userForm" controlName="email" controlLabel="Email">
+
+          </app-form-errors>
+        </div>
+
+        <div class="form-floating mt-2">
+          <input type="text" class="form-control" id="floatingFirstname" placeholder="Robert" formControlName="firstname">
+          <label for="floatingFirstname">Firstname</label>
+          <app-form-errors [group]="userForm"  controlName="firstname" controlLabel="Prénom">
+
+          </app-form-errors>
+        </div>
+
+        <div class="form-floating mt-2">
+          <input type="text" class="form-control" id="floatingLastname" placeholder="DUPONT" formControlName="lastname">
+          <label for="floatingLastname">Lastname</label>
+          <app-form-errors [group]="userForm"  controlName="lastname" controlLabel="Nom">
+
+          </app-form-errors>
+        </div>
+
+        <div class="form-floating mt-2">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="******" formControlName="password">
+          <label for="floatingPassword">Password</label>
+          <app-form-errors [group]="userForm"  controlName="password" controlLabel="Mot de passe">
+
+          </app-form-errors>
+        </div>
+
+        <div class="form-floating mt-2">
+          <select class="form-select" id="floatingCountry" formControlName="country">
+            <option *ngFor="let country of countries | keyvalue"
+                    [value]="country.value"
+            >{{country.key}}</option>
+          </select>
+          <label for="floatingCountry">Country</label>
+          <app-form-errors [group]="userForm"  controlName="country" controlLabel="Pays">
+
+          </app-form-errors>
+        </div>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Annuler</button>
+      <button type="button" class="btn btn-dark"
+              [disabled]="userForm && userForm.invalid"
+              (click)="onSubmitUserForm(modal)">{{selectedUserForEdition ? 'Modifier' : 'Ajouter'}}</button>
+    </div>
+  </ng-template>
+
+<table class="table ">
+  <thead class="table-secondary">
+  <tr>
+    <th>ID</th>
+    <th>Email</th>
+    <th>Fullname</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users$ | async">
+    <th scope="row">{{user.id}}</th>
+    <td>{{user.email}}</td>
+    <td>{{user.fullname}}</td>
+    <td>
+      <a [routerLink]="['/', 'users', user.id]"
+         class="btn btn-outline-primary text-uppercase mx-2">
+        DÉTAILS
+      </a>
+      <button (click)="onClickEditUser(modalUserForm, user)"
+        class="btn btn-outline-warning text-uppercase mx-2">
+        ÉDITER
+      </button>
+      <button (click)="onClickDeleteUser(modalDeleteUser, user)"
+        class="btn btn-outline-danger text-uppercase mx-2">
+        SUPPR.
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<ngb-toast
+  *ngIf="showDeleteSuccessToast"
+  class="position-fixed top-0 end-0 p-1 m-3 bg-success alert text-light"
+  [autohide]="true"
+[delay]="4000"
+(hidden)="showDeleteSuccessToast = false">
+  Suppression effectuée avec succès.
+</ngb-toast>
+<ng-template #modalDeleteUser let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Suppression utilisateur</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-describedby="modal-title"
+      (click)="modal.dismiss('cross')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      <strong>Étes-vous sûr de vouloir supprimer l'utilisateur
+        <span class="text-secondary">{{selectedUserDeleteConfirmation?.fullname}}</span> ?</strong>
+    </p>
+    <p>
+    <span class="text-danger">La suppression est irréversible.</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Annuler</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close()">Confirmer</button>
+  </div>
+</ng-template>
+
+
+</div>

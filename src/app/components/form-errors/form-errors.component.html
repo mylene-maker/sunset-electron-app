@@ -1,0 +1,38 @@
+<div *ngIf="control
+                  && control.invalid
+                  && (control.dirty || control.touched) && control.errors"
+     class="alert alert-danger p-2 my-1">
+
+  <div *ngIf="control.errors['required']">
+    Le champ '{{controlLabel}}' est obligatoire.
+  </div>
+
+  <div *ngIf="control.errors['email']">
+    Le champ '{{controlLabel}}' doit être une adresse email valide.
+  </div>
+
+  <div *ngIf="control.errors['minlength']">
+    Le champ '{{controlLabel}}' doit avoir au
+    minimum {{control.errors['minlength']['requiredLength']}} {{control.errors['minlength']['requiredLength'] === 1 ? 'caractère' : 'caractères'}}
+    .
+  </div>
+
+  <div *ngIf="control.errors['maxlength']">
+    Le champ '{{controlLabel}}' doit avoir au
+    maximum {{control.errors['maxlength']['requiredLength']}} {{control.errors['maxlength']['requiredLength'] === 1 ? 'caractère' : 'caractères'}}
+    .
+  </div>
+
+  <div *ngIf="control.errors['min']">
+    Le champ '{{controlLabel}}' doit valoir au minimum {{control.errors['min']['min']}}.
+  </div>
+
+  <div *ngIf="control.errors['max']">
+    Le champ '{{controlLabel}}' doit valoir au maximum {{control.errors['max']['max']}}.
+  </div>
+
+  <div *ngIf="control.errors['pattern']">
+    Le champ '{{controlLabel}}' doit être d'une longueur de 8 caractères minimum, posséder une majuscule, un chiffre et un caractère spécial.
+  </div>
+
+</div>
