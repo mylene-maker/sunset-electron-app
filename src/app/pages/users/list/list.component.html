@@ -47,12 +47,17 @@
         </div>
 
         <div class="form-floating mt-2">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="******" formControlName="password">
-          <label for="floatingPassword">Password</label>
-          <app-form-errors [group]="userForm"  controlName="password" controlLabel="Mot de passe">
-
-          </app-form-errors>
+          <input type="number" class="form-control" id="floatingStreetNumber" placeholder="Numéro de rue" formControlName="streetNumber">
+          <label for="floatingStreetNumber">Numéro voie :</label>
+          <app-form-errors [group]="userForm" controlName="streetNumber" controlLabel="Numero de rue"></app-form-errors>
         </div>
+
+        <div class="form-floating mt-2">
+          <input type="text" class="form-control" id="floatingStreetName" placeholder="Nom de rue/voie" formControlName="street_name">
+          <label for="floatingStreetName">Nom de rue</label>
+          <app-form-errors [group]="userForm" controlName="street_name" controlLabel="Nom de rue"></app-form-errors>
+        </div>
+
 
         <div class="form-floating mt-2">
           <select class="form-select" id="floatingCountry" formControlName="country">
@@ -62,6 +67,20 @@
           </select>
           <label for="floatingCountry">Country</label>
           <app-form-errors [group]="userForm"  controlName="country" controlLabel="Pays">
+
+          </app-form-errors>
+        </div>
+
+        <div class="form-floating mt-2">
+          <input type="text" class="form-control" id="floatingZipcode" placeholder="Code Postal" formControlName="zip_code">
+          <label for="floatingZipcode">Code postal :</label>
+          <app-form-errors [group]="userForm" controlName="zip_code" controlLabel="Code postal"></app-form-errors>
+        </div>
+
+        <div class="form-floating mt-2">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="******" formControlName="password">
+          <label for="floatingPassword">Password</label>
+          <app-form-errors [group]="userForm"  controlName="password" controlLabel="Mot de passe">
 
           </app-form-errors>
         </div>
@@ -82,6 +101,7 @@
     <th>ID</th>
     <th>Email</th>
     <th>Fullname</th>
+    <th>adress</th>
     <th>Actions</th>
   </tr>
   </thead>
@@ -90,6 +110,7 @@
     <th scope="row">{{user.id}}</th>
     <td>{{user.email}}</td>
     <td>{{user.fullname}}</td>
+    <td>{{user.street_name}}</td>
     <td>
       <a [routerLink]="['/', 'users', user.id]"
          class="btn btn-outline-primary text-uppercase mx-2">

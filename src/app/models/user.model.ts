@@ -1,25 +1,15 @@
 
-// {
-//   "id": 0,
-//   "lastname": "string",
-//   "firstname": "string",
-//   "email": "string",
-//   "country": "string",
-//   "password": "string",
-//   "roles": [
-//   {
-//     "id": 0,
-//     "roleName": "string"
-//   }
-
 export interface UserHttp { // modele qui arrive de la BD
-  id: number
-  lastname: string
-  firstname: string
-  email: string
-  country: string
-  password: string
-  roles: { id: number, roleName: string } []
+  "id": number
+  "lastname": string
+  "firstname": string
+  "email": string
+  "country": string
+  "street_number": number
+  "street_name": string
+  "zip_code": string
+  "password": string
+  "roles": { id: number, roleName: string } []
 }
 
 export interface User { // modele de notre application
@@ -28,6 +18,9 @@ export interface User { // modele de notre application
   firstname: string
   fullname: string
   email: string
+  streetNumber: number
+  street_name: string
+  zip_code: string
   country: User.Country
   roles: { id: number, roleName: string } []
 }
@@ -36,6 +29,9 @@ export interface UserForm {
   lastname: string
   firstname: string
   email: string
+  streetNumber: number
+  street_name: string
+  zip_code: string
   country: User.Country
   password: string
   roles: { id: number } []
@@ -254,6 +250,9 @@ export namespace User {
       lastname: userHttp.lastname,
       firstname: userHttp.firstname,
       fullname: `${userHttp.lastname} ${userHttp.firstname}`,
+      streetNumber: userHttp.street_number,
+      street_name: userHttp.street_name,
+      zip_code: userHttp.zip_code,
       country: userHttp.country as Country,
       roles: userHttp.roles
     }

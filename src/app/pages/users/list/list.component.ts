@@ -37,6 +37,7 @@ export class ListComponent implements OnInit{
     const searchText = evt.target?.value
     this.searchFilterText$.next(searchText)
   }
+
   onClickAddUser(modalUserForm: any){
     this.initUserForm()
     const modal = this.modalService.open(modalUserForm)
@@ -97,16 +98,14 @@ export class ListComponent implements OnInit{
       })
 
   }
+
   onSubmitUserForm(modal: any) {
-    // on verifie si le form est invalide
-
-    // si oui on ne fait rien
-
-    // si non on soumet le fomulaire
+ 
     if (this.userForm?.valid){
       modal.close()
     }
   }
+
   onClickDeleteUser(modalDeleteUser: any, user: User): void {
     this.selectedUserDeleteConfirmation = user
 
@@ -150,6 +149,9 @@ export class ListComponent implements OnInit{
       email: [userToEdit ? userToEdit.email : undefined, [ Validators.required, Validators.email]],
       lastname: [userToEdit ? userToEdit.lastname : undefined, [ Validators.required]],
       firstname: [userToEdit ? userToEdit.firstname : undefined, [ Validators.required]],
+      streetNumber: [userToEdit ? userToEdit.streetNumber : undefined, [ Validators.required]],
+      street_name: [userToEdit ? userToEdit.street_name : undefined, [ Validators.required]],
+      zip_code: [userToEdit ? userToEdit.zip_code : undefined, [ Validators.required]],
       password: [undefined, [ Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':",.<>\/?]).{8,}$/)]],
       country: [userToEdit ? userToEdit.country : Country.FRANCE, [Validators.required]]
     })
