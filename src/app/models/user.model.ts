@@ -18,7 +18,7 @@ export interface User { // modele de notre application
   firstname: string
   fullname: string
   email: string
-  streetNumber: number
+  street_number: number
   street_name: string
   zip_code: string
   country: User.Country
@@ -29,7 +29,7 @@ export interface UserForm {
   lastname: string
   firstname: string
   email: string
-  streetNumber: number
+  street_number: number
   street_name: string
   zip_code: string
   country: User.Country
@@ -250,7 +250,7 @@ export namespace User {
       lastname: userHttp.lastname,
       firstname: userHttp.firstname,
       fullname: `${userHttp.lastname} ${userHttp.firstname}`,
-      streetNumber: userHttp.street_number,
+      street_number: userHttp.street_number,
       street_name: userHttp.street_name,
       zip_code: userHttp.zip_code,
       country: userHttp.country as Country,

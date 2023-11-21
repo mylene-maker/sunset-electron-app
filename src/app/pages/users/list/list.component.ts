@@ -149,7 +149,7 @@ export class ListComponent implements OnInit{
       email: [userToEdit ? userToEdit.email : undefined, [ Validators.required, Validators.email]],
       lastname: [userToEdit ? userToEdit.lastname : undefined, [ Validators.required]],
       firstname: [userToEdit ? userToEdit.firstname : undefined, [ Validators.required]],
-      streetNumber: [userToEdit ? userToEdit.streetNumber : undefined, [ Validators.required]],
+      street_number: [userToEdit ? userToEdit.street_number : undefined, [ Validators.required]],
       street_name: [userToEdit ? userToEdit.street_name : undefined, [ Validators.required]],
       zip_code: [userToEdit ? userToEdit.zip_code : undefined, [ Validators.required]],
       password: [undefined, [ Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':",.<>\/?]).{8,}$/)]],
