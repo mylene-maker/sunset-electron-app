@@ -27,6 +27,7 @@ export class ListComponent implements OnInit{
 
   private searchFilterText$: BehaviorSubject<string | undefined> = new BehaviorSubject<string | undefined>(undefined)
 
+
   constructor(private userService: UserService, private modalService: NgbModal, private fb: FormBuilder) {
   }
 
@@ -100,7 +101,7 @@ export class ListComponent implements OnInit{
   }
 
   onSubmitUserForm(modal: any) {
- 
+
     if (this.userForm?.valid){
       modal.close()
     }

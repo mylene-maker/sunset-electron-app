@@ -10,6 +10,7 @@ export interface UserHttp { // modele qui arrive de la BD
   "zip_code": string
   "password": string
   "roles": { id: number, roleName: string } []
+  "commands": { id: number, payment: boolean, remarque: string } []
 }
 
 export interface User { // modele de notre application
@@ -23,6 +24,8 @@ export interface User { // modele de notre application
   zip_code: string
   country: User.Country
   roles: { id: number, roleName: string } []
+  commands: { id: number, payment: boolean, remarque: string } []
+
 }
 
 export interface UserForm {
@@ -254,7 +257,8 @@ export namespace User {
       street_name: userHttp.street_name,
       zip_code: userHttp.zip_code,
       country: userHttp.country as Country,
-      roles: userHttp.roles
+      roles: userHttp.roles,
+      commands: userHttp.commands
     }
   }
 

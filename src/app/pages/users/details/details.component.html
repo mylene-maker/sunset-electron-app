@@ -1,11 +1,19 @@
-<div
-  *ngIf="(user$ | async) as user"
-  class="card mt-3 mx-auto shadow" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{ user.fullname }}</h5>
-    <p>{{user.street_number}}</p>
-    <p>{{user.street_name}}</p>
-    <p>{{user.zip_code}} {{user.country}}</p>
-    <a [routerLink]="['/']" class="btn btn-outline-dark">Revenir sur la liste</a>
+<div class="container">
+  <div
+    *ngIf="(user$ | async) as user"
+    class="card mt-5 mx-auto shadow" style="width: 18rem;">
+    <div class="card-header">
+      <h5>Fiche client : {{user.fullname}}</h5>
+    </div>
+    <div class="card-body">
+      <p class="card-title"><span class="label">Role : </span><span><ng-container *ngFor="let role of user.roles; last as isLast">{{isLast ? ' ' + role.roleName : ' ' + role.roleName +  ' -'}}</ng-container></span>
+      <p class="card-text"><span class="label"> Mail : </span>{{user.email}}</p>
+      <p class="card-text"><span class="label"> Adresse : </span>{{user.street_number}} {{user.street_name}}</p>
+      <p class="card-text">{{user.zip_code}} {{user.country}}</p>
+
+      <p class="card-title"><span class="label">Commandes : </span><span><ng-container *ngFor="let command of user.commands; last as isLast">{{isLast ? ' ' + command.id : ' ' + command.payment +  ' -'}}</ng-container></span>
+      <a [routerLink]="['/']" class="btn btn-outline-dark">Revenir sur la liste</a>
+    </div>
   </div>
+
 </div>

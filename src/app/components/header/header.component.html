@@ -1,20 +1,49 @@
 <header>
-  <div class="px-3 py-2 text-bg-dark border-bottom">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+<!--  <div class="px-3 py-2 text-bg-dark border-bottom">-->
+<!--    <div class="container">-->
+<!--      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">-->
+<!--        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">-->
+<!--          SUNSET-->
+<!--        </a>-->
+
+<!--        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">-->
+<!--          <li>-->
+<!--            <a routerLink="/users" class="nav-link text-white">-->
+<!--              <fa-icon class="me-1" [icon]="iconHome"></fa-icon>-->
+<!--              Home-->
+<!--            </a>-->
+<!--          </li>-->
+<!--          <li *ngIf="isConnected$ | async">-->
+<!--            <button (click)="onClickSignOut()"  class="btn btn-outline-light">-->
+<!--              <fa-icon class="me-1" [icon]="iconSignOut"></fa-icon>-->
+<!--              Sign Out-->
+<!--            </button>-->
+<!--          </li>-->
+
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <nav class="navbar navbar-expand-lg navbar-light shadow navbar-bg">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none" href="/"><img src="/assets/logo.png" alt="Logo sunset" width="86"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
           SUNSET
         </a>
-
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
           <li>
-            <a routerLink="/users" class="nav-link text-white">
+            <a routerLink="/users" class="nav-link text-dark">
               <fa-icon class="me-1" [icon]="iconHome"></fa-icon>
               Home
             </a>
           </li>
           <li *ngIf="isConnected$ | async">
-            <button (click)="onClickSignOut()"  class="btn btn-outline-light">
+            <button (click)="onClickSignOut()"  class="btn btn-outline-dark">
               <fa-icon class="me-1" [icon]="iconSignOut"></fa-icon>
               Sign Out
             </button>
@@ -22,6 +51,7 @@
 
         </ul>
       </div>
+
     </div>
-  </div>
+  </nav>
 </header>

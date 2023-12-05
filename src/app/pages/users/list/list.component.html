@@ -1,14 +1,33 @@
 <div class="mt-5">
 
-  <div class="d-flex justify-content-between mb-4">
-    <input type="text"
-    placeholder="Filtrer un utilisateur par nom ou prénom"
-    class="input-group-text text-start"
-    size="100"
-    (input)="onInputSearchFilter($event)">
-    <button (click)="onClickAddUser(modalUserForm)" class="btn btn-success">Ajouter un nouvel utilisateur</button>
+  <div class="mb-4">
+<!--    <input type="text"-->
+<!--    placeholder="Filtrer un utilisateur par nom ou prénom"-->
+<!--    class="input-group-text text-start"-->
+<!--    size="100"-->
+<!--    (input)="onInputSearchFilter($event)">-->
+
+    <div class="form-outline mb-4" data-mdb-input-init>
+      <input type="search" class="form-control" id="datatable-search-input" placeholder="Rechercher par nom" (input)="onInputSearchFilter($event)" size="100%">
+      <!--    <label class="form-label" for="datatable-search-input">Search</label>-->
+    </div>
+
+    <button (click)="onClickAddUser(modalUserForm)" class="btn btn-outline-warning">Ajouter un client</button>
   </div>
 
+<!--  <div class="input-group">-->
+<!--    <div id="search-autocomplete" class="form-outline" data-mdb-input-init>-->
+<!--      <input type="search" id="form1" class="form-control" />-->
+<!--      <label class="form-label" for="form1">Search</label>-->
+<!--    </div>-->
+<!--    <button type="button" class="btn btn-primary" data-mdb-ripple-init>-->
+<!--      <i class="fas fa-search"></i>-->
+<!--    </button>-->
+<!--  </div>-->
+
+
+
+  </div>
   <ng-template #modalUserForm let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-title-user-form">{{ selectedUserForEdition ? 'MODIFIER UN UTILISATEUR' : 'AJOUTER UN UTILISATEUR'}}</h4>
@@ -95,39 +114,67 @@
     </div>
   </ng-template>
 
-<table class="table ">
-  <thead class="table-secondary">
-  <tr>
-    <th>ID</th>
-    <th>Email</th>
-    <th>Fullname</th>
-    <th>adress</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let user of users$ | async">
-    <th scope="row">{{user.id}}</th>
-    <td>{{user.email}}</td>
-    <td>{{user.fullname}}</td>
-    <td>{{user.street_name}}</td>
-    <td>
+
+<div class="card mt-2" *ngFor="let user of users$ | async">
+<!--  <span *ngFor=" let role of roles | async"></span>-->
+  <div class="card-header">
+    <h5>Fiche client : {{user.fullname}}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-title"><span class="label">Role : </span><span><ng-container *ngFor="let role of user.roles; last as isLast">{{isLast ? ' ' + role.roleName : ' ' + role.roleName +  ' -'}}</ng-container></span>
+    <p class="card-text"><span class="label"> Mail : </span>{{user.email}}</p>
+    <p class="card-text"><span class="label"> Adresse : </span>{{user.street_number}} {{user.street_name}}</p>
+    <p class="card-text">{{user.zip_code}} {{user.country}}</p>
+    <div class="mt-4">
       <a [routerLink]="['/', 'users', user.id]"
          class="btn btn-outline-primary text-uppercase mx-2">
         DÉTAILS
       </a>
       <button (click)="onClickEditUser(modalUserForm, user)"
-        class="btn btn-outline-warning text-uppercase mx-2">
+              class="btn btn-outline-warning text-uppercase mx-2">
         ÉDITER
       </button>
       <button (click)="onClickDeleteUser(modalDeleteUser, user)"
-        class="btn btn-outline-danger text-uppercase mx-2">
-        SUPPR.
+              class="btn btn-outline-danger text-uppercase mx-2">
+        SUPPRIMER
       </button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+    </div>
+  </div>
+</div>
+
+<!--<table class="table ">-->
+<!--  <thead class="table-secondary">-->
+<!--  <tr>-->
+<!--    <th>ID</th>-->
+<!--    <th>Email</th>-->
+<!--    <th>Fullname</th>-->
+<!--    <th>adress</th>-->
+<!--    <th>Actions</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let user of users$ | async">-->
+<!--    <th scope="row">{{user.id}}</th>-->
+<!--    <td>{{user.email}}</td>-->
+<!--    <td>{{user.fullname}}</td>-->
+<!--    <td>{{user.street_name}}</td>-->
+<!--    <td>-->
+<!--      <a [routerLink]="['/', 'users', user.id]"-->
+<!--         class="btn btn-outline-primary text-uppercase mx-2">-->
+<!--        DÉTAILS-->
+<!--      </a>-->
+<!--      <button (click)="onClickEditUser(modalUserForm, user)"-->
+<!--        class="btn btn-outline-warning text-uppercase mx-2">-->
+<!--        ÉDITER-->
+<!--      </button>-->
+<!--      <button (click)="onClickDeleteUser(modalDeleteUser, user)"-->
+<!--        class="btn btn-outline-danger text-uppercase mx-2">-->
+<!--        SUPPR.-->
+<!--      </button>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
 <ngb-toast
   *ngIf="showDeleteSuccessToast"
   class="position-fixed top-0 end-0 p-1 m-3 bg-success alert text-light"
@@ -162,4 +209,4 @@
 </ng-template>
 
 
-</div>
+
