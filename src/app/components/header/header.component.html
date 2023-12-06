@@ -39,7 +39,13 @@
           <li>
             <a routerLink="/users" class="nav-link text-dark">
               <fa-icon class="me-1" [icon]="iconHome"></fa-icon>
-              Home
+              Clients
+            </a>
+          </li>
+          <li>
+            <a routerLink="/reservations" class="nav-link text-dark">
+              <fa-icon class="me-1" [icon]="iconCalendar"></fa-icon>
+              Reservations
             </a>
           </li>
           <li *ngIf="isConnected$ | async">
@@ -54,4 +60,5 @@
 
     </div>
   </nav>
+
 </header>

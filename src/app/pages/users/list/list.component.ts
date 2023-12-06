@@ -5,6 +5,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import Country = User.Country;
 import {BehaviorSubject, combineLatest, debounceTime, map, Observable} from "rxjs";
+import {faEdit, faPlus, faRemove, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
 
 @Component({
   selector: 'app-list',
@@ -12,6 +14,11 @@ import {BehaviorSubject, combineLatest, debounceTime, map, Observable} from "rxj
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit{
+
+
+  iconTrash: IconDefinition = faTrash;
+  iconEdit: IconDefinition = faEdit;
+  iconDetail: IconDefinition = faPlus;
 
   countries = Country
 
@@ -158,6 +165,7 @@ export class ListComponent implements OnInit{
     })
 
   }
+
 
 
 }

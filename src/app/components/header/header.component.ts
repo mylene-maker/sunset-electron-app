@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {faHouse, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faCalendar, faHouse, faUser} from "@fortawesome/free-solid-svg-icons";
 import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
 import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit{
 
   iconHome: IconDefinition = faHouse
   iconSignOut: IconDefinition = faUser
+  iconCalendar: IconDefinition = faCalendar
 
   // Il est excecuté une fois a la creation du composant
   constructor(private authService: AuthService, private router: Router) {

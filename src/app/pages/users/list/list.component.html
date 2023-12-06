@@ -114,7 +114,6 @@
     </div>
   </ng-template>
 
-
 <div class="card mt-2" *ngFor="let user of users$ | async">
 <!--  <span *ngFor=" let role of roles | async"></span>-->
   <div class="card-header">
@@ -128,14 +127,17 @@
     <div class="mt-4">
       <a [routerLink]="['/', 'users', user.id]"
          class="btn btn-outline-primary text-uppercase mx-2">
+        <fa-icon class="me-1" [icon]="iconDetail"></fa-icon>
         DÉTAILS
       </a>
       <button (click)="onClickEditUser(modalUserForm, user)"
               class="btn btn-outline-warning text-uppercase mx-2">
+        <fa-icon class="me-1" [icon]="iconEdit"></fa-icon>
         ÉDITER
       </button>
       <button (click)="onClickDeleteUser(modalDeleteUser, user)"
               class="btn btn-outline-danger text-uppercase mx-2">
+        <fa-icon class="me-1" [icon]="iconTrash"></fa-icon>
         SUPPRIMER
       </button>
     </div>

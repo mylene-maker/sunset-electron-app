@@ -5,6 +5,7 @@ import {DetailsComponent} from "./pages/users/details/details.component";
 import {SigninComponent} from "./pages/auth/signin/signin.component";
 import {ErrorComponent} from "./pages/error/error.component";
 import {authGuard} from "./guards/auth/auth.guard";
+import {ListReservationComponent} from "./pages/reservations/list-reservation/list-reservation.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'users'},
@@ -12,6 +13,10 @@ const routes: Routes = [
   { path: 'users', canActivate: [authGuard],  children: [
       { path: '', component: ListComponent},
       { path: ':id', component: DetailsComponent},
+    ]
+  },
+  { path: 'reservations', canActivate: [authGuard],  children: [
+      { path: '', component: ListReservationComponent}
     ]
   },
   { path: 'not-found', component: ErrorComponent},

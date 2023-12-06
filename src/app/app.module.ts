@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormErrorsComponent} from "./components/form-errors/form-errors.component";
 import {AuthInterceptor} from "./interceptors/auth/auth.interceptor";
+import { ListReservationComponent } from './pages/reservations/list-reservation/list-reservation.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {AuthInterceptor} from "./interceptors/auth/auth.interceptor";
     DetailsComponent,
     SigninComponent,
     ErrorComponent,
-    FormErrorsComponent
+    FormErrorsComponent,
+    ListReservationComponent
   ],
   imports: [
     BrowserModule,

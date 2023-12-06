@@ -1,25 +1,25 @@
-<main class="w-75 m-auto card shadow p-4 mt-5">
+<main class="w-80 m-auto card border-0 p-4 mt-5">
 
   <form (ngSubmit)="onSubmitSignIn(signInForm)" #signInForm="ngForm">
 
-    <h1 class="h3 mb-3 fw-normal text-center">CONNEXION</h1>
+    <h1 class="h3 mb-5 fw-normal text-center">CONNEXION</h1>
 
     <div *ngIf="errMsg" class="alert alert-danger p-2 my-3 text-center">{{errMsg}}</div>
 
     <div class="form-floating mt-2">
-      <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" name="email" required email ngModel>
+      <input type="email" class="form-control border-0 border-bottom text-center" id="floatingEmail" placeholder="name@example.com" name="email" required email ngModel>
       <label for="floatingEmail">Email address</label>
     </div>
 
     <div class="form-floating mt-2">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required ngModel>
+      <input type="password" class="form-control border-0 border-bottom text-center" id="floatingPassword" placeholder="Password" name="password" required ngModel>
       <label for="floatingPassword">Password</label>
     </div>
 
     <div class="form-check text-start my-3">
       <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" name="keepConnection" [ngModel]="false">
       <label class="form-check-label" for="flexCheckDefault">
-        Remember me
+        Se souvenir de moi
       </label>
     </div>
 
