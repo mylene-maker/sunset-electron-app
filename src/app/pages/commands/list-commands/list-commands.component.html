@@ -1,0 +1,109 @@
+
+<div class="container mt-5">
+
+<ng-container *ngFor="let command of commands$ | async">
+<div class="card mb-3 p-3"  *ngIf="(command.reservations)?.length !== 0">
+
+  <h5 class="card-title"><span class="">Commande n° {{ command.id }}</span></h5>
+<!--  <h5><span *ngIf="!reservation.accepted">Status : En attente</span></h5>-->
+<!--  <h6><span *ngIf="reservation.accepted">Status : Accepter</span></h6>-->
+  <div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col" class="label">Date</th>
+        <th scope="col" class="label">Equipement</th>
+        <th scope="col" class="label">Emplacement</th>
+        <th scope="col" class="label">Status</th>
+        <th scope="col" class="label">Action</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let reservation of command.reservations">
+      <tr>
+        <td>
+          <p class="card-text">{{reservation.date_to | date:'dd/MM/yyyy'}}</p>
+        </td>
+        <td>
+          <p class="card-text">{{reservation.equipment}}</p>
+        </td>
+        <td>
+          <p class="card-text">{{reservation.lane}}{{reservation.column}}</p>
+        </td>
+        <td *ngIf="reservation.accepted">
+          <p class="">Acceptée</p>
+
+        </td>
+        <td *ngIf="!reservation.accepted">
+          <p class="">En attente</p>
+
+        </td>
+        <td>
+          <div class="">
+            <button (click)="onClickAccepted(reservation)"
+               class="btn btn-outline-warning text-uppercase mx-2"
+               [disabled]="reservation.accepted"
+            >
+              <fa-icon class="me-1" [icon]="iconAccept"></fa-icon>
+              Accepter
+            </button>
+            <button (click)="onClickOpenModalEmplacement(modalEmplacement, reservation)"
+                    class="btn btn-outline-warning text-uppercase mx-2"
+            >
+              <fa-icon class="me-1" [icon]="iconAccept"></fa-icon>
+              Placer
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+</ng-container>
+
+  <ng-template #modalEmplacement let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-title-user-form">Choisir un emplacement</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-describedby="modal-title-user-form"
+        (click)="modal.dismiss('cross')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form *ngIf="resaForm" [formGroup]="resaForm">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" formControlName="column">
+        <option selected>Emplacement souhaité</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+      </select>
+        <app-form-errors [group]="resaForm" controlName="column" controlLabel="column"></app-form-errors>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Annuler</button>
+      <button type="button" class="btn btn-dark"
+              (click)="onSubmitEmplacement(modal)">Attribuer</button>
+    </div>
+  </ng-template>
+
+</div>
+
+
