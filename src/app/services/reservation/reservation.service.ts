@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment.development";
 import {HttpClient} from "@angular/common/http";
-import {User, UserHttp} from "../../models/user.model";
 import {firstValueFrom, map, Observable} from "rxjs";
-import {Reservation, ReservationHttp, Reservatuion} from "../../models/reservation.model";
+import {ResaForm, Reservation, ReservationHttp} from "../../models/reservation.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class ReservationService {
     const obsHttps$ = this.http
       .get<ReservationHttp[]>(`${this.fullBaseUrlApi}/`)
       .pipe(
-        map((reservationsHttp: ReservationHttp[]) => reservationsHttp.map((reservationHttp: ReservationHttp) => Reservatuion.mapperReservationHttpToReservation(reservationHttp)))
+        map((reservationsHttp: ReservationHttp[]) => reservationsHttp.map((reservationHttp: ReservationHttp) => Reservation.mapperReservationHttpToReservation(reservationHttp)))
       )
     return firstValueFrom(obsHttps$)
   }
@@ -36,8 +35,6 @@ export class ReservationService {
 
   updateAcceptance(reservationId: number): Observable<any> {
     const url = `${this.fullBaseUrlApi}/${reservationId}`;
-
-    // Vous pouvez inclure uniquement la propriété que vous souhaitez mettre à jour
     const updateData = {
       accepted: true
     };
@@ -45,6 +42,15 @@ export class ReservationService {
     return this.http.patch(url, updateData);
   }
 
-
+  updateEmplacement(reservationId: number, resaForm: ResaForm): Promise<Object> {
+    // const url = `${this.fullBaseUrlApi}/${reservationId}`;
+    const obsHttps$ = this.http
+      .patch<ReservationHttp[]>(`${this.fullBaseUrlApi}/${reservationId}`, resaForm)
+      // .pipe(
+      //   map((reservationsHttp: ReservationHttp[]) => reservationsHttp.map((reservationHttp: ReservationHttp) => Reservation.mapperReservationHttpToReservation(reservationHttp)))
+      // )
+    console.log(`${this.fullBaseUrlApi}/${reservationId}`)
+    return firstValueFrom(obsHttps$)
+  }
 
 }

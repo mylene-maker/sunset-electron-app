@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject, combineLatest, debounceTime, map, Observable} from "rxjs";
-import {User} from "../../../models/user.model";
-import {Reservation, Reservatuion} from "../../../models/reservation.model";
+import {Reservation} from "../../../models/reservation.model";
 import {ReservationService} from "../../../services/reservation/reservation.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {faCheck, faEdit, faPlus, faRemove, faUser} from "@fortawesome/free-solid-svg-icons";
@@ -69,18 +68,6 @@ export class ListReservationComponent implements OnInit{
   }
 
 
-  onClickAccepted(reservation: any) {
-    this.reservationService.updateAcceptance(reservation.id)
-      .subscribe(
-        () => {
-          // La mise à jour a réussi
-          reservation.accepted = true;
-        },
-        error => {
-          console.error("Erreur lors de la mise à jour de la réservation", error);
-          // Gérez les erreurs en conséquence
-        }
-      );
-  }
+
 
 }

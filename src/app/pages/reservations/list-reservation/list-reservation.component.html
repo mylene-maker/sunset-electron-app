@@ -1,88 +1,93 @@
 
-<div class="container">
+<!--<div class="container">-->
 
-  <div class="form-outline mb-4" data-mdb-input-init>
-    <input type="search" class="form-control mt-5" id="datatable-search-input" placeholder="Rechercher par date" (input)="onInputSearchFilter($event)" size="100%">
-    <!--    <label class="form-label" for="datatable-search-input">Search</label>-->
-  </div>
+<!--  <div class="form-outline mb-4" data-mdb-input-init>-->
+<!--    <input type="search" class="form-control mt-5" id="datatable-search-input" placeholder="Rechercher par date" (input)="onInputSearchFilter($event)" size="100%">-->
+<!--    &lt;!&ndash;    <label class="form-label" for="datatable-search-input">Search</label>&ndash;&gt;-->
+<!--  </div>-->
 
 
-<div class="card mb-3 p-3" *ngFor="let reservation of reservations$ | async; let i = index">
-  <h5 class="card-title"><span class="">Commande n° {{ i + 1 }}</span></h5>
-  <h5><span *ngIf="!reservation.accepted">Status : En attente</span></h5>
-  <h6><span *ngIf="reservation.accepted">Status : Accepter</span></h6>
-  <div>
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col" class="label">Date</th>
-        <th scope="col" class="label">Equipement</th>
-        <th scope="col" class="label">Emplacement</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          <p class="card-text">{{reservation.date_to | date:'dd/MM/yyyy'}}</p>
-        </td>
-        <td>
-          <p class="card-text">{{reservation.lane}}</p>
-        </td>
-        <td>
-          <p class="card-text">{{reservation.equipment}}</p>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="mt-4">
-    <a (click)="onClickAccepted(reservation)"
-       class="btn btn-outline-warning text-uppercase mx-2"
-       *ngIf="!reservation.accepted"
-    >
-      <fa-icon class="me-1" [icon]="iconAccept"></fa-icon>
-      Accepter
-    </a>
-    <button
-            class="btn btn-outline-danger text-uppercase mx-2">
-      <fa-icon class="me-1" [icon]="iconReject"></fa-icon>
-      Refuser
-    </button>
-<!--    <button (click)="onClickDeleteResservation(modalDeleteReservation, reservation)"-->
+<!--<div class="card mb-3 p-3" *ngFor="let command of commands$ | async">-->
+<!--  <h5 class="card-title"><span class="">Commande n° {{ command.id }}</span></h5>-->
+<!--&lt;!&ndash;  <h5><span *ngIf="!reservation.accepted">Status : En attente</span></h5>&ndash;&gt;-->
+<!--&lt;!&ndash;  <h6><span *ngIf="reservation.accepted">Status : Accepter</span></h6>&ndash;&gt;-->
+<!--  <div>-->
+<!--    <table class="table">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th scope="col" class="label">Date</th>-->
+<!--        <th scope="col" class="label">Equipement</th>-->
+<!--        <th scope="col" class="label">Emplacement</th>-->
+<!--        <th scope="col" class="label">Action</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody *ngFor="let reservation of command.reservations">-->
+<!--      <tr>-->
+<!--        <td>-->
+<!--          <p class="card-text">{{reservation.date_to | date:'dd/MM/yyyy'}}</p>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--          <p class="card-text">{{reservation.lane}}</p>-->
+<!--        </td>-->
+<!--        <td>-->
+<!--          <p class="card-text">{{reservation.equipment}}</p>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <div class="mt-4">-->
+<!--          <a (click)="onClickAccepted(reservation)"-->
+<!--             class="btn btn-outline-warning text-uppercase mx-2"-->
+<!--             *ngIf="!reservation.accepted"-->
+<!--          >-->
+<!--            <fa-icon class="me-1" [icon]="iconAccept"></fa-icon>-->
+<!--            Accepter-->
+<!--          </a>-->
+<!--          <button-->
 <!--            class="btn btn-outline-danger text-uppercase mx-2">-->
-<!--      <fa-icon class="me-1" [icon]="iconDelete"></fa-icon>-->
-<!--      SUPPRIMER-->
-<!--    </button>-->
-  </div>
-</div>
-<!--
-  <ng-template #modalReservationForm let-modal>
+<!--            <fa-icon class="me-1" [icon]="iconReject"></fa-icon>-->
+<!--            Refuser-->
+<!--          </button>-->
+<!--          &lt;!&ndash;    <button (click)="onClickDeleteResservation(modalDeleteReservation, reservation)"&ndash;&gt;-->
+<!--          &lt;!&ndash;            class="btn btn-outline-danger text-uppercase mx-2">&ndash;&gt;-->
+<!--          &lt;!&ndash;      <fa-icon class="me-1" [icon]="iconDelete"></fa-icon>&ndash;&gt;-->
+<!--          &lt;!&ndash;      SUPPRIMER&ndash;&gt;-->
+<!--          &lt;!&ndash;    </button>&ndash;&gt;-->
+<!--        </div>-->
+<!--      </tr>-->
+<!--      </tbody>-->
 
-  </ng-template>
+<!--    </table>-->
+<!--  </div>-->
 
-  <ng-template #modalDeleteReservation let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-title">Supprimer une reservation</h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-describedby="modal-title"
-        (click)="modal.dismiss('cross')"
-      ></button>
-    </div>
-    <div class="modal-body">
-      <p>
-        <strong>Étes-vous sûr de vouloir supprimer la reservation du
-          <span class="text-secondary">{{selectedReservationDeleteConfirmation?.date_to | date:'dd/MM/yyyy'}}</span> ?</strong>
-      </p>
-      <p>
-        <span class="text-danger">La suppression est irréversible.</span>
-      </p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Annuler</button>
-      <button type="button" class="btn btn-danger" (click)="modal.close()">Confirmer</button>
-    </div>
-  </ng-template>-->
+<!--</div>-->
+<!--&lt;!&ndash;-->
+<!--  <ng-template #modalReservationForm let-modal>-->
 
-</div>
+<!--  </ng-template>-->
+
+<!--  <ng-template #modalDeleteReservation let-modal>-->
+<!--    <div class="modal-header">-->
+<!--      <h4 class="modal-title" id="modal-title">Supprimer une reservation</h4>-->
+<!--      <button-->
+<!--        type="button"-->
+<!--        class="btn-close"-->
+<!--        aria-describedby="modal-title"-->
+<!--        (click)="modal.dismiss('cross')"-->
+<!--      ></button>-->
+<!--    </div>-->
+<!--    <div class="modal-body">-->
+<!--      <p>-->
+<!--        <strong>Étes-vous sûr de vouloir supprimer la reservation du-->
+<!--          <span class="text-secondary">{{selectedReservationDeleteConfirmation?.date_to | date:'dd/MM/yyyy'}}</span> ?</strong>-->
+<!--      </p>-->
+<!--      <p>-->
+<!--        <span class="text-danger">La suppression est irréversible.</span>-->
+<!--      </p>-->
+<!--    </div>-->
+<!--    <div class="modal-footer">-->
+<!--      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Annuler</button>-->
+<!--      <button type="button" class="btn btn-danger" (click)="modal.close()">Confirmer</button>-->
+<!--    </div>-->
+<!--  </ng-template>&ndash;&gt;-->
+
+<!--</div>-->
