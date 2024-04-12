@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment.development";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthService} from "../auth/auth.service";
+import {HttpClient} from "@angular/common/http";
 import {User, UserForm, UserHttp} from "../../models/user.model";
 import {firstValueFrom, map} from "rxjs";
 

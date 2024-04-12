@@ -1,19 +1,65 @@
-<div class="container">
+
+  <div class="mt-4">
+    <a [routerLink]="['/']" class="btn btn-outline-warning">Revenir sur la liste</a>
+  </div>
   <div
     *ngIf="(user$ | async) as user"
-    class="card mt-5 mx-auto shadow" style="width: 18rem;">
+    class="card mt-5">
     <div class="card-header">
       <h5>Fiche client : {{user.fullname}}</h5>
     </div>
     <div class="card-body">
-      <p class="card-title"><span class="label">Role : </span><span><ng-container *ngFor="let role of user.roles; last as isLast">{{isLast ? ' ' + role.roleName : ' ' + role.roleName +  ' -'}}</ng-container></span>
+      <p class="card-title"><span class="label"> Role : </span><span><ng-container *ngFor="let role of user.roles; last as isLast">{{isLast ? ' ' + role.roleName : ' ' + role.roleName +  ' -'}}</ng-container></span>
       <p class="card-text"><span class="label"> Mail : </span>{{user.email}}</p>
       <p class="card-text"><span class="label"> Adresse : </span>{{user.street_number}} {{user.street_name}}</p>
       <p class="card-text">{{user.zip_code}} {{user.country}}</p>
 
-      <p class="card-title"><span class="label">Commandes : </span><span><ng-container *ngFor="let command of user.commands; last as isLast">{{isLast ? ' ' + command.id : ' ' + command.payment +  ' -'}}</ng-container></span>
-      <a [routerLink]="['/']" class="btn btn-outline-dark">Revenir sur la liste</a>
+      <h6 class="mb-3"> RESERVATIONS ASSOCIEES :</h6>
+
+      <div *ngFor="let command of commands$ | async">
+        <div class="card mb-3 p-3"  *ngIf="(command.reservations)?.length !== 0 && command.customer.id === user.id">
+          <div>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col" class="label">Date</th>
+                <th scope="col" class="label">Equipement</th>
+                <th scope="col" class="label">Emplacement</th>
+                <th scope="col" class="label">Status</th>
+              </tr>
+              </thead>
+              <tbody *ngFor="let reservation of command.reservations">
+              <tr>
+                <td>
+                  <p class="card-text">{{reservation.date_to | date:'dd/MM/yyyy'}}</p>
+                </td>
+                <td>
+                  <p class="card-text">{{reservation.equipment}}</p>
+                </td>
+                <td>
+                  <p class="card-text">{{reservation.lane}} - {{reservation.column}}</p>
+                </td>
+                <td *ngIf="reservation.accepted" class="d-flex">
+                  <fa-icon class="me-1" [icon]="iconCheck"></fa-icon>
+                  <p class="">Acceptée</p>
+
+                </td>
+                <td *ngIf="!reservation.accepted" class="d-flex">
+                  <fa-icon class="me-1" [icon]="iconWait"></fa-icon>
+                  <p class="">En attente</p>
+
+                </td>
+              </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+
     </div>
+
   </div>
 
-</div>
+

@@ -27,6 +27,22 @@ export interface Command {
   "id": number
   "payment": boolean
   "remarque": string
+  "customer": {
+    "id": number,
+    "lastname": string,
+    "firstname": string,
+    "email": string,
+    "country": string,
+    "street_number":number,
+    "street_name": string,
+    "zip_code": string,
+    "password": string,
+    "roles":
+      {
+        "id": number,
+        "roleName": string
+      }[]
+  },
   reservations: Reservation[]
 }
 
@@ -38,6 +54,7 @@ export namespace  Command {
       id: commandHttp.id,
       payment: commandHttp.payment,
       remarque: commandHttp.remarque,
+      customer: commandHttp.customer,
       reservations: commandHttp.reservations.map(reservation => Reservation.mapperReservationHttpToReservation(reservation))
     }
   }

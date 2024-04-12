@@ -4,7 +4,7 @@ import {Command} from "../../../models/command.model";
 import {CommandService} from "../../../services/command/command.service";
 import {ResaForm, Reservation} from "../../../models/reservation.model";
 import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
-import {faCheck, faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faEdit, faLocation, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {ReservationService} from "../../../services/reservation/reservation.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -20,6 +20,7 @@ export class ListCommandsComponent implements OnInit{
   commands$?: Promise<Command[]>
 
   iconAccept : IconDefinition = faCheck;
+  iconLocation : IconDefinition = faLocation;
 
   // edit column
   resaForm?: FormGroup;

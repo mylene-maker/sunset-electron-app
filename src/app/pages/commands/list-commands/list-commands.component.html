@@ -5,8 +5,8 @@
 <div class="card mb-3 p-3"  *ngIf="(command.reservations)?.length !== 0">
 
   <h5 class="card-title"><span class="">Commande n° {{ command.id }}</span></h5>
-<!--  <h5><span *ngIf="!reservation.accepted">Status : En attente</span></h5>-->
-<!--  <h6><span *ngIf="reservation.accepted">Status : Accepter</span></h6>-->
+  <p>Client : {{ command.customer.firstname }} {{command.customer.lastname}}</p>
+
   <div>
     <table class="table">
       <thead>
@@ -27,7 +27,7 @@
           <p class="card-text">{{reservation.equipment}}</p>
         </td>
         <td>
-          <p class="card-text">{{reservation.lane}}{{reservation.column}}</p>
+          <p class="card-text">{{reservation.lane}} - {{reservation.column}}</p>
         </td>
         <td *ngIf="reservation.accepted">
           <p class="">Acceptée</p>
@@ -49,7 +49,7 @@
             <button (click)="onClickOpenModalEmplacement(modalEmplacement, reservation)"
                     class="btn btn-outline-warning text-uppercase mx-2"
             >
-              <fa-icon class="me-1" [icon]="iconAccept"></fa-icon>
+              <fa-icon class="me-1" [icon]="iconLocation"></fa-icon>
               Placer
             </button>
           </div>
@@ -93,6 +93,14 @@
         <option value="14">14</option>
         <option value="15">15</option>
         <option value="16">16</option>
+        <option value="16">17</option>
+        <option value="16">18</option>
+        <option value="16">19</option>
+        <option value="16">20</option>
+        <option value="16">21</option>
+        <option value="16">22</option>
+        <option value="16">23</option>
+        <option value="16">24</option>
       </select>
         <app-form-errors [group]="resaForm" controlName="column" controlLabel="column"></app-form-errors>
       </form>

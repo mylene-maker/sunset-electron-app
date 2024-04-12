@@ -15,18 +15,6 @@
     <button (click)="onClickAddUser(modalUserForm)" class="btn btn-outline-warning">Ajouter un client</button>
   </div>
 
-<!--  <div class="input-group">-->
-<!--    <div id="search-autocomplete" class="form-outline" data-mdb-input-init>-->
-<!--      <input type="search" id="form1" class="form-control" />-->
-<!--      <label class="form-label" for="form1">Search</label>-->
-<!--    </div>-->
-<!--    <button type="button" class="btn btn-primary" data-mdb-ripple-init>-->
-<!--      <i class="fas fa-search"></i>-->
-<!--    </button>-->
-<!--  </div>-->
-
-
-
   </div>
   <ng-template #modalUserForm let-modal>
     <div class="modal-header">
@@ -43,7 +31,7 @@
 
         <div class="form-floating mt-2">
           <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" formControlName="email">
-          <label for="floatingEmail">Email address</label>
+          <label for="floatingEmail">Addresse Mail :</label>
           <app-form-errors [group]="userForm" controlName="email" controlLabel="Email">
 
           </app-form-errors>
@@ -51,7 +39,7 @@
 
         <div class="form-floating mt-2">
           <input type="text" class="form-control" id="floatingFirstname" placeholder="Robert" formControlName="firstname">
-          <label for="floatingFirstname">Firstname</label>
+          <label for="floatingFirstname">Prénom</label>
           <app-form-errors [group]="userForm"  controlName="firstname" controlLabel="Prénom">
 
           </app-form-errors>
@@ -59,7 +47,7 @@
 
         <div class="form-floating mt-2">
           <input type="text" class="form-control" id="floatingLastname" placeholder="DUPONT" formControlName="lastname">
-          <label for="floatingLastname">Lastname</label>
+          <label for="floatingLastname">Nom de famille</label>
           <app-form-errors [group]="userForm"  controlName="lastname" controlLabel="Nom">
 
           </app-form-errors>
@@ -84,7 +72,7 @@
                     [value]="country.value"
             >{{country.key}}</option>
           </select>
-          <label for="floatingCountry">Country</label>
+          <label for="floatingCountry">Pays</label>
           <app-form-errors [group]="userForm"  controlName="country" controlLabel="Pays">
 
           </app-form-errors>
@@ -98,7 +86,7 @@
 
         <div class="form-floating mt-2">
           <input type="password" class="form-control" id="floatingPassword" placeholder="******" formControlName="password">
-          <label for="floatingPassword">Password</label>
+          <label for="floatingPassword">Mot de passe</label>
           <app-form-errors [group]="userForm"  controlName="password" controlLabel="Mot de passe">
 
           </app-form-errors>
@@ -107,8 +95,8 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Annuler</button>
-      <button type="button" class="btn btn-dark"
+      <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss()">Annuler</button>
+      <button type="button" class="btn btn-success"
               [disabled]="userForm && userForm.invalid"
               (click)="onSubmitUserForm(modal)">{{selectedUserForEdition ? 'Modifier' : 'Ajouter'}}</button>
     </div>
@@ -126,17 +114,17 @@
     <p class="card-text">{{user.zip_code}} {{user.country}}</p>
     <div class="mt-4">
       <a [routerLink]="['/', 'users', user.id]"
-         class="btn btn-outline-primary text-uppercase mx-2">
+         class="btn btn-outline-primary text-uppercase mx-1">
         <fa-icon class="me-1" [icon]="iconDetail"></fa-icon>
         DÉTAILS
       </a>
       <button (click)="onClickEditUser(modalUserForm, user)"
-              class="btn btn-outline-warning text-uppercase mx-2">
+              class="btn btn-outline-warning text-uppercase mx-1">
         <fa-icon class="me-1" [icon]="iconEdit"></fa-icon>
         ÉDITER
       </button>
       <button (click)="onClickDeleteUser(modalDeleteUser, user)"
-              class="btn btn-outline-danger text-uppercase mx-2">
+              class="btn btn-outline-danger text-uppercase mx-1">
         <fa-icon class="me-1" [icon]="iconTrash"></fa-icon>
         SUPPRIMER
       </button>
@@ -144,39 +132,6 @@
   </div>
 </div>
 
-<!--<table class="table ">-->
-<!--  <thead class="table-secondary">-->
-<!--  <tr>-->
-<!--    <th>ID</th>-->
-<!--    <th>Email</th>-->
-<!--    <th>Fullname</th>-->
-<!--    <th>adress</th>-->
-<!--    <th>Actions</th>-->
-<!--  </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<!--  <tr *ngFor="let user of users$ | async">-->
-<!--    <th scope="row">{{user.id}}</th>-->
-<!--    <td>{{user.email}}</td>-->
-<!--    <td>{{user.fullname}}</td>-->
-<!--    <td>{{user.street_name}}</td>-->
-<!--    <td>-->
-<!--      <a [routerLink]="['/', 'users', user.id]"-->
-<!--         class="btn btn-outline-primary text-uppercase mx-2">-->
-<!--        DÉTAILS-->
-<!--      </a>-->
-<!--      <button (click)="onClickEditUser(modalUserForm, user)"-->
-<!--        class="btn btn-outline-warning text-uppercase mx-2">-->
-<!--        ÉDITER-->
-<!--      </button>-->
-<!--      <button (click)="onClickDeleteUser(modalDeleteUser, user)"-->
-<!--        class="btn btn-outline-danger text-uppercase mx-2">-->
-<!--        SUPPR.-->
-<!--      </button>-->
-<!--    </td>-->
-<!--  </tr>-->
-<!--  </tbody>-->
-<!--</table>-->
 <ngb-toast
   *ngIf="showDeleteSuccessToast"
   class="position-fixed top-0 end-0 p-1 m-3 bg-success alert text-light"

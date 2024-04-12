@@ -147,6 +147,7 @@ export class ListComponent implements OnInit{
       )
   }
 
+
   private initUserForm(userToEdit?: User): void{
     // un group est un ensemble de control
     // un control est lié a un champs html (x: input)
